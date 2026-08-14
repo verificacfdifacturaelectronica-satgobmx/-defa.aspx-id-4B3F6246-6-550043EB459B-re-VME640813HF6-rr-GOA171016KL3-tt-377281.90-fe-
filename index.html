@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demostración de verificación CFDI</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#fff;color:#444}
+header{background:#650d32;color:#fff;padding:18px;text-align:center}
+main{max-width:700px;margin:35px auto;padding:20px}
+.notice{padding:12px;background:#fff3cd;border:1px solid #e0c36b;margin-bottom:25px;font-weight:bold}
+label{display:block;margin:14px 0 6px}
+input{width:100%;box-sizing:border-box;padding:11px;border:1px solid #ccc;border-radius:3px}
+button{margin-top:20px;padding:11px 20px;background:#fff;border:1px solid #650d32;color:#650d32;cursor:pointer}
+button:hover{background:#650d32;color:#fff}
+#result{display:none;margin-top:30px}
+#result img{max-width:100%;height:auto;display:block;margin:auto}
+.error{color:#b00020;margin-top:10px}
+</style>
+</head>
+<body>
+<header>FACTURA ELECTRÓNICA — DEMOSTRACIÓN</header>
+<main>
+<div class="notice">SIMULACIÓN — EJEMPLO INFORMATIVO. NO ES EL PORTAL DEL SAT Y NO REALIZA UNA VALIDACIÓN FISCAL.</div>
+
+<h2>Verificación de comprobantes</h2>
+
+<label>Folio fiscal</label>
+<input id="uuid" value="4B3F6246-667E-43F8-81EA-550043EB459B">
+
+<label>RFC emisor</label>
+<input id="emisor" value="VME640813HF6">
+
+<label>RFC receptor</label>
+<input id="receptor" value="GOA171016KL3">
+
+<label>Escribe los caracteres de la imagen</label>
+<div style="font-size:24px;letter-spacing:5px;margin:10px 0;padding:12px;background:#eee;width:max-content">12358</div>
+<input id="captcha" autocomplete="off" placeholder="Ejemplo: 12358">
+
+<button onclick="verificar()">Verificar CFDI</button>
+<div id="error" class="error"></div>
+
+<section id="result">
+<h2>Resultado de la simulación</h2>
+<p><strong>SIMULACIÓN — NO ES UNA VALIDACIÓN DEL SAT</strong></p>
+<img src="resultado.png" alt="Resultado de demostración de verificación CFDI">
+</section>
+</main>
+
+<script>
+function verificar(){
+  const c=document.getElementById('captcha').value.trim();
+  const e=document.getElementById('error');
+  if(c !== '12358'){
+    e.textContent='Para esta demostración, introduce correctamente los caracteres de la imagen.';
+    return;
+  }
+  e.textContent='';
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
